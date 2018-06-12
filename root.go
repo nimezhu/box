@@ -55,9 +55,9 @@ func (s *Box) Start(mode string, port int, router *mux.Router) {
 func (s *Box) _startApp(mode string, port int, router *mux.Router) {
 	server := &http.Server{Addr: ":" + strconv.Itoa(port), Handler: router}
 	//add router add header
+	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 	err := server.ListenAndServe()
 	if err != nil {
 		panic(err)
 	}
-	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 }

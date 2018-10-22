@@ -36,7 +36,6 @@ func (s *Box) InitRouter(router *mux.Router) {
 		http.Redirect(w, r, "/version", http.StatusTemporaryRedirect)
 	})
 	router.HandleFunc("/version", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
 		a, err := json.Marshal(s)
 		if err == nil {
 			w.Write(a)

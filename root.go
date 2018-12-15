@@ -72,3 +72,14 @@ func (s *Box) StartDataServer(port int, router *mux.Router, corsOptions *cors.Op
 	}
 	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 }
+
+func (s *Box) StartLocalServer(port int, router *mux.Router, corsOptions *cors.Options) {
+	c := cors.New(*corsOptions)
+	handler := c.Handler(router)
+	server := &http.Server{Addr: "127.0.0.1:" + strconv.Itoa(port), Handler: handler}
+	err := server.ListenAndServe()
+	if err != nil {
+		panic(err)
+	}
+	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
+}

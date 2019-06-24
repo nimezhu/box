@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"path"
+	path "path/filepath"
 	"strconv"
 	"syscall"
 

@@ -72,7 +72,7 @@ func (s *Box) _startApp(mode string, port int, router *mux.Router) {
 	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 	err := server.ListenAndServe()
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
 }
 func (s *Box) StartDataServer(port int, router *mux.Router, corsOptions *cors.Options) {
@@ -81,7 +81,7 @@ func (s *Box) StartDataServer(port int, router *mux.Router, corsOptions *cors.Op
 	s.server = &http.Server{Addr: ":" + strconv.Itoa(port), Handler: handler}
 	err := s.server.ListenAndServe()
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
 	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 }
@@ -97,7 +97,7 @@ func (s *Box) StartLocalServer(port int, router *mux.Router, corsOptions *cors.O
 	s.server = &http.Server{Addr: "127.0.0.1:" + strconv.Itoa(port), Handler: handler}
 	err := s.server.ListenAndServe()
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
 	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 }

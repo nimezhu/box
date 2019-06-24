@@ -17,6 +17,7 @@ type Box struct {
 	Root    string
 	Home    string
 	Version string
+	server  *http.Server
 }
 
 func modesText(d map[string]string) string {

@@ -68,8 +68,6 @@ func (s *Box) Start(mode string, port int, router *mux.Router) {
 }
 func (s *Box) _startApp(mode string, port int, router *mux.Router) {
 	server := &http.Server{Addr: ":" + strconv.Itoa(port), Handler: router}
-	//add router add header
-	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 	err := server.ListenAndServe()
 	if err != nil {
 		log.Println(err)
@@ -79,11 +77,11 @@ func (s *Box) StartDataServer(port int, router *mux.Router, corsOptions *cors.Op
 	c := cors.New(*corsOptions)
 	handler := c.Handler(router)
 	s.server = &http.Server{Addr: ":" + strconv.Itoa(port), Handler: handler}
+	log.Println("starting data service in port " + strconv.Itoa(port))
 	err := s.server.ListenAndServe()
 	if err != nil {
 		log.Println(err)
 	}
-	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 }
 func (s *Box) Stop() error {
 	err := s.server.Shutdown(context.TODO())
@@ -95,9 +93,9 @@ func (s *Box) StartLocalServer(port int, router *mux.Router, corsOptions *cors.O
 	c := cors.New(*corsOptions)
 	handler := c.Handler(router)
 	s.server = &http.Server{Addr: "127.0.0.1:" + strconv.Itoa(port), Handler: handler}
+	log.Println("starting data service in 127.0.0.1:" + strconv.Itoa(port))
 	err := s.server.ListenAndServe()
 	if err != nil {
 		log.Println(err)
 	}
-	log.Println("Please open http://127.0.0.1:" + strconv.Itoa(port))
 }

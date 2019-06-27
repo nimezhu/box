@@ -77,7 +77,7 @@ func (s *Box) StartDataServer(port int, router *mux.Router, corsOptions *cors.Op
 	c := cors.New(*corsOptions)
 	handler := c.Handler(router)
 	s.server = &http.Server{Addr: ":" + strconv.Itoa(port), Handler: handler}
-	log.Println("starting data service in port " + strconv.Itoa(port))
+	log.Println("Data service is in port " + strconv.Itoa(port))
 	err := s.server.ListenAndServe()
 	if err != nil {
 		log.Println(err)
@@ -93,7 +93,7 @@ func (s *Box) StartLocalServer(port int, router *mux.Router, corsOptions *cors.O
 	c := cors.New(*corsOptions)
 	handler := c.Handler(router)
 	s.server = &http.Server{Addr: "127.0.0.1:" + strconv.Itoa(port), Handler: handler}
-	log.Println("starting data service in 127.0.0.1:" + strconv.Itoa(port))
+	log.Println("Data service is in 127.0.0.1:" + strconv.Itoa(port))
 	err := s.server.ListenAndServe()
 	if err != nil {
 		log.Println(err)
